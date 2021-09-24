@@ -1,25 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import {Route, Link 
 } from 'react-router-dom'
-import { ItemContainer } from './ItemContainer';
 import { ViewStudentContainer } from './ViewStudentContainer';
 import { LoginContainer } from './LoginContainer';
 import { EnrollStudent } from './EnrollStudent';
 
 export const App = () => {
 
+	const [newStudents, setNewStudents] = useState([]);
+
+	function addStudent(student){
+		console.log("New students: ", newStudents, "student to add: ", student);
+		setNewStudents([...newStudents, student]);
+		console.log("Updated new student list: ", newStudents)
+		
+	}
+
+	
+
 	return (
 		<div>
 			<Route exact path="/">
-			<LoginContainer />
+				<LoginContainer />
 			</Route>
-			
-
 			<Route path="/viewStudents">
-			<ViewStudentContainer />
+				<ViewStudentContainer newStudents={newStudents} />
 			</Route>
 			<Route path="/enrollStudent">
-			<EnrollStudent />
+				<EnrollStudent addStudent={addStudent} newStudents={newStudents} />
 			</Route>
 		</div>
 	)

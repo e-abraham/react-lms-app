@@ -1,0 +1,11 @@
+{
+  "data": [
+      {"firstName" : "Alfreds", "lastName" : "Maria", "campus" : "Saturn"},
+      {"firstName" : "Ben", "lastName" : "Tate", "campus" : "Mars"},
+      {"firstName" : "Charles", "lastName" : "Smith", "campus" : "Moon"},
+      {"firstName" : "Dan", "lastName" : "Hooks", "campus" : "Moon"},
+      {"firstName" : "Eric", "lastName" : "Taylor", "campus" : "Mars"},
+      {"firstName" : "Jen", "lastName" : "Phillips", "campus" : "Saturn"}
+  ]  
+}
+

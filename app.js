@@ -1,7 +1,7 @@
 const express = require('express');
 
 const {sequelize} = require('./db');
-const {Sauce} = require('./models');
+const {Student} = require('./models');
 
 const seed = require('./seed')
 
@@ -23,14 +23,14 @@ app.use(express.static('public'));
 
 seed();
 
-app.get('/sauces', async (req, res) => {
-    const sauces= await Sauce.findAll()
-    res.json(sauces)
+app.get('/students', async (req, res) => {
+    const students= await Student.findAll()
+    res.json(students)
 })
 
-app.get('/sauces/:id', async (req, res) => {
-    const sauce = await Sauce.findByPk(req.params.id)
-    res.json({sauce})
+app.get('/students/:id', async (req, res) => {
+    const student = await Student.findByPk(req.params.id)
+    res.json({student})
 })
 
 app.listen(PORT, () => {
