@@ -8,7 +8,7 @@ import 'regenerator-runtime/runtime'
 
 
 
-// Unit testing StudenTable
+// Unit testing StudentTable
 
 describe("Students Table component", () => {
   test("Contains items passed down as props", () => {
