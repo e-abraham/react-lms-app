@@ -2,10 +2,9 @@ const {Sequelize, DataTypes, Model} = require('sequelize')
 const {sequelize} = require('../db')
 
 
-class Sauce extends Model {}
+class Student extends Model {}
 
-Sauce.init({
-    studentId: DataTypes.INTEGER,
+Student.init({
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     campus: DataTypes.STRING
@@ -14,4 +13,4 @@ Sauce.init({
     timestamps: false,
 });
 
-module.exports = {Sauce};
+module.exports = {Student};

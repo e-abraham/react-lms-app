@@ -8,10 +8,19 @@ export const StudentTable = (props) => {
 
     async function fetchStudents(){
 		try {
-			const response = await fetch('http://localhost:4000/sauces');
+			const response = await fetch('http://localhost:4000/students');
 			const responseJSON = await response.json();
-			setStudents(responseJSON);
-            setAllStudents(responseJSON);
+            let lastID = responseJSON[responseJSON.length-1].id;
+            props.newStudents.map(student => {
+                if (student.id == ''){
+                    lastID++;
+                    student.id = lastID;
+                } else {
+                    lastID = student.id;
+                }
+            });
+            setStudents([...responseJSON, ...props.newStudents]);
+            setAllStudents([...responseJSON, ...props.newStudents]);
 		} catch (err) {
 			console.log("Oh no an error! ", err);
 		}
@@ -39,7 +48,13 @@ export const StudentTable = (props) => {
         }
     }
 
-    console.log("students in table: ", students);
+    function removeStudent(student) {
+        console.log("student to remove: ", student);
+        setAllStudents(allStudents.filter(a=> a != student));
+        setStudents(students.filter(s=> s != student));
+    }
+
+    console.log("students in table: ", students, " allStudents: ", allStudents);
 
     return (
         <>
@@ -69,11 +84,11 @@ export const StudentTable = (props) => {
                         students.map((student, idx) => {
                             return (
                                 <tr key={idx} value={student} className="student-row">
-                                    <td>{student.studentId}</td>
+                                    <td>{student.id}</td>
                                     <td>{student.firstName}</td>
                                     <td>{student.lastName}</td>
                                     <td>{student.campus}</td>
-                                    <td><a className="table-link" href="">Unenroll</a></td>
+                                    <td><a className="table-link" onClick={()=>removeStudent(student)}>Unenroll</a></td>
                                 </tr>
                             )
                         })
